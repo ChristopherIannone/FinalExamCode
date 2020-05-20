@@ -43,20 +43,36 @@ public class Loan {
 	}
 
 	public double GetPMT() {
+		
+		double rate = this.InterestRate;
+		double numPayments = this.LoanPaymentCnt;
+		double presentValue = this.LoanAmount;
+		double futureValue = this.LoanBalanceEnd;
+		boolean Compounding = this.bCompoundingOption;
+		PMT = Math.abs(FinanceLib.pmt(rate, numPayments, presentValue, futureValue, Compounding));
+
+	}
 		double PMT = 0;
-		//TODO: Execute PMT function to determine payment with given rate, nbr of payments, PV, FV, compounding)
+		// TODO: Execute PMT function to determine payment with given rate, nbr of
+		// payments, PV, FV, compounding)
 		return PMT;
 	}
 
 	public double getTotalPayments() {
 		//TODO: Return the total payments for the loan
 		double tot = 0;
+		ArrayList<Payment> pay = this.getLoanPayments();
+		for (Payment p : ArrayList < Payment > pay) {
+			tot = tot + p.getPayment();
 		return tot;
 	}
 
 	public double getTotalInterest() {
 		//TODO: Return the total interest for the loan
 		double interest = 0;
+		ArrayList<Payment> pay = this.getLoanPayments();
+		for (Payment p : ArrayList < Payment > pay) {
+			interest = interest + p.getIntrestPayment();{
 		return interest;
 	}
 
